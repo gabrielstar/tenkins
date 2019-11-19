@@ -50,6 +50,7 @@ pipeline-graph-analysis
 pipeline-input-step
 pipeline-milestone-step
 pipeline-model-api
+pipeline-maven
 pipeline-model-declarative-agent
 pipeline-model-definition
 pipeline-model-extensions
