@@ -1,0 +1,1 @@
+Based on https://dzone.com/articles/dockerizing-jenkins-2-setup-and-using-it-along-wit
