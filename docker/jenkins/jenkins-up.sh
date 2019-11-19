@@ -17,7 +17,12 @@ clear
 echo "Running on:" `docker-machine ip default` " and building image $jenkins_container_name"
 echo "Checking if maven $maven_file and jdk8 $jdk8_file archives are present"
 current_path=`pwd`
+
+#DOWNLOAD TOOLS, NEED TO BE DONE ONCE ONLY
+
+#source downloads/download_tools.sh $maven_file $maven_url $jdk8_file $jdk8_url
 source downloads/download_tools.sh $maven_file $maven_url $jdk8_file $jdk8_url remove_existing_binaries
+
 cd $current_path
 #stop first
 echo "Stopping existing container if running"
