@@ -8,9 +8,5 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 #automatically installing all plugins
 COPY plugins/plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
-#copy standalone plugins e.g. xray
-USER jenkins
-COPY plugins/*.hpi /var/jenkins_home/plugins/
-USER root
 #install maven and jdk8, anything from that dir gets auto-executed
 COPY tools/* /usr/share/jenkins/ref/init.groovy.d/
