@@ -11,7 +11,7 @@ Usage:
 1. In shell/cygwin/docker for windows navigate to directory where jenkins-up.sh is
 2. Run ./jenkins-up.sh
 3. Navigate to YOUR_IP:9090
-
+4. Test by runnign build at http://YOUR_IP:9090/job/testJenkinsSetUp/
 Info:
 
 This image is build of current Jenkins LTS so from time to time Dockerfile needs to be adjusted
