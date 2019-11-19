@@ -1,5 +1,7 @@
 **/.idea
 **/*.tar.gz
 **/builds
-**/workspace*
+**/workspace
 **/nextBuildNumber
+**/tests_y
+**/tests
