@@ -10,7 +10,7 @@ build-user-vars-plugin
 cloudbees-folder
 command-launcher
 credentials
-cucumber-reports
+cucumber-testresult-plugin
 credentials-binding
 display-url-api
 docker-commons
