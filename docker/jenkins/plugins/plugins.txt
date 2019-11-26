@@ -61,6 +61,7 @@ pipeline-stage-view
 pipeline-utility-steps
 plain-credentials
 plot
+htmlpublisher
 resource-disposer
 scm-api
 script-security
