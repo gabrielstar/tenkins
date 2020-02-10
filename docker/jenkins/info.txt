@@ -1,1 +1,11 @@
-Based on https://dzone.com/articles/dockerizing-jenkins-2-setup-and-using-it-along-wit
+gabrielstar@gihub
+Gabriel Starczewski
+
+1) Run jenkins-up.sh on Linux or Windows 7
+2) Run jenkins-up-win10.sh on Windows 10
+    The notable difference is we do not mount volumes form window to containers here as it proved to be very problematic.
+
+For running on Window use Git bash or Cygwin.
+
+
+Credit to: Based on https://dzone.com/articles/dockerizing-jenkins-2-setup-and-using-it-along-wit

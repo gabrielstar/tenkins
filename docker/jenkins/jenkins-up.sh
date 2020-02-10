@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#This should work on Linux and Windows7+Gitbash/Cygiwn
 
 #CONF
 jenkins_container_name="tenkins" #test jenkins

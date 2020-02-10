@@ -31,6 +31,11 @@ pipeline {
         maven &apos;maven35&apos;
     }
     stages {
+        stage(&apos;test allure installation&apos;) {
+        steps {
+                allure includeProperties: false, jdk: &apos;&apos;, results: [[path: &apos;allure-results&apos;]]
+            }
+        }
         stage(&apos;test java installation&apos;) {
             steps {
                 sh &apos;java -version&apos;
@@ -43,7 +48,7 @@ pipeline {
                 sh &apos;which mvn&apos;
             }
         }
-       
+
     }
 }</script>
     <sandbox>true</sandbox>

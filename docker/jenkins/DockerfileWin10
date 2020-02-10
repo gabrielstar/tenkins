@@ -9,5 +9,8 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 COPY plugins/plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 #install maven and jdk8, anything from that dir gets auto-executed
-COPY jobs /var/jenkins_home
-COPY downloads /var/jenkins_hom
+COPY tools/* /usr/share/jenkins/ref/init.groovy.d/
+COPY --chown=jenkins:jenkins downloads/* /var/jenkins_home/downloads/
+COPY --chown=jenkins:jenkins jobs /var/jenkins_home/jobs
+COPY --chown=jenkins:jenkins jobs/seed /var/jenkins_home/jobs/seed
+COPY --chown=jenkins:jenkins jobs/testJenkinsSetUp /var/jenkins_home/jobs/testJenkinsSetUp

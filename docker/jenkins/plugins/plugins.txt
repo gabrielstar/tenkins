@@ -1,3 +1,4 @@
+allure-jenkins-plugin
 ace-editor
 ant
 antisamy-markup-formatter

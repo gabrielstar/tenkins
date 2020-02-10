@@ -16,11 +16,13 @@ jdk8_url=https://files-cdn.liferay.com/mirrors/download.oracle.com/otn-pub/java/
 #RUN
 
 clear
-current_path=`pwd`
+current_path=$(pwd)
+dockerfile="DockerfileWin10"
 
 #stop first
 echo "Stopping and Removing all containers for a clean start"
-docker container stop $(docker container ls -aq) && docker container rm $(docker container ls -aq)
+docker container stop $(docker container ls -aq) ||:
+docker container rm $(docker container ls -aq) ||:
 
 #DOWNLOAD TOOLS, NEED TO BE DONE ONCE ONLY
 echo "Checking if maven $maven_file and jdk8 $jdk8_file archives are present"
@@ -29,13 +31,16 @@ source downloads/download_tools.sh $maven_file $maven_url $jdk8_file $jdk8_url
 
 cd $current_path
 #build new image so we have reproducible builds (mind we use LTS  as base so it can change)
-echo "Building image, Create container, Run Container"
-docker build --no-cache -t "$jenkins_container_name" .
-docker container create --rm --name "$jenkins_container_name" "$jenkins_container_name":latest
+echo "Building image"
+docker build -f "${dockerfile}" --no-cache -t "$jenkins_container_name" .
+#create volumes to persist data
 docker run -p $local_port:8080 --name "$jenkins_container_name" --rm "$jenkins_container_name"
+echo "Copy dependency binaries and bootstrap jobs to running container"
+docker container restart "$jenkins_container_name"
 #END
 
 # -------------------------------------------------------------------------------------------------------------------
-# Important: Execute in POWERSHELL because tty is not supported on windoóws and winpty can be missing
-docker exec -it tenkins ls -l /var/jenkins_home/jobs/jobs
+# Important: Execute these command in POWERSHELL because tty is not supported on windows and winpty can be missing
+docker exec -it tenkins ls -l /var/jenkins_home
+docker exec -it tenkins ls -l /var/jenkins_home/jobs
 docker exec -it tenkins ls -l /var/jenkins_home/downloads
