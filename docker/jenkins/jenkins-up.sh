@@ -23,8 +23,8 @@ echo "Stopping existing container if running"
 docker container stop $jenkins_container_name > /dev/null 2>&1 || :
 #DOWNLOAD TOOLS, NEED TO BE DONE ONCE ONLY
 
-#source downloads/download_tools.sh $maven_file $maven_url $jdk8_file $jdk8_url
-source downloads/download_tools.sh $maven_file $maven_url $jdk8_file $jdk8_url remove_existing_binaries
+source downloads/download_tools.sh $maven_file $maven_url $jdk8_file $jdk8_url
+#source downloads/download_tools.sh $maven_file $maven_url $jdk8_file $jdk8_url remove_existing_binaries
 
 cd $current_path
 
@@ -33,7 +33,9 @@ echo "Building image"
 docker build --no-cache -t "$jenkins_container_name" .
 # run container so it is removed after stopping, from https://hub.docker.com/r/jenkins/jenkins, preserve jobs
 echo "Running jenkins image on http://"`docker-machine ip default`":$local_port"
-docker run -p $local_port:8080 -v `pwd`/downloads:/var/jenkins_home/downloads -v `pwd`/jobs:/var/jenkins_home/jobs/ --rm --name "$jenkins_container_name" "$jenkins_container_name":latest
+#docker run -p $local_port:8080 -v `pwd`/downloads:/var/jenkins_home/downloads -v `pwd`/jobs:/var/jenkins_home/jobs/ --rm --name "$jenkins_container_name" "$jenkins_container_name":latest
+#docker run -p 9090:8080 -v downloads:/var/jenkins_home/downloads  --rm --name tenkins tenkins:latest
+docker run -p $local_port:8080 -v `pwd`/downloads:/var/jenkins_home/downloads  --rm --name "$jenkins_container_name" "$jenkins_container_name":latest
 
 #process stops here, now execute manually to test all gogg
 docker exec -it tenkins ls -l /var/jenkins_home/
