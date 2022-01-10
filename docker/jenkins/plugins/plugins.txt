@@ -41,7 +41,6 @@ mailer
 mapdb-api
 matrix-auth
 matrix-project
-mattermost
 momentjs
 pam-auth
 performance
